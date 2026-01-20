@@ -107,7 +107,7 @@ let student = [
     {sno:4,name:"yagnesh",age:25}
 ]
 const resu = student.filter(studentobj => {
-        if(studentobj.name = "Pavan")
-            studentobj.age = 22
+        if(studentobj.age >22)
+            return studentobj
     })
- console.log(student.)
+ console.log(resu)
