@@ -1,0 +1,39 @@
+### Create new product
+POSt http://localhost:3000/product-api/products/
+Content-Type: application/json
+
+{
+    "productName":"Laptop",
+    "price":45000,
+    "brand":"Asus VivoBook"
+}
+
+-------------------------------------------------------------------
+
+### Create user
+POST http://localhost:3000/user-api/users/
+Content-Type: application/json
+
+
+{
+    "name":"pavan2",
+    "email":"pavan2@gmail.com",
+    "password":"pavan@123"
+}
+
+###Read all users
+GET http://localhost:3000/user-api/users/
+
+###Login
+POSt http://localhost:3000/user-api/login/
+Content-Type: application/json
+
+
+{
+    "email":"pavan@gmail.com",
+    "password":"pavan@123"
+}
+
+
+###cart
+POSt http://localhost:3000/user-api/cart/

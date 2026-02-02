@@ -3,6 +3,7 @@ import { userApp } from "./API/UsersAPI.js";
 import { productApp } from "./API/ProductAPI.js";
 import { connect } from "mongoose";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 const app = exp();
 const port = 3000;
 
@@ -23,6 +24,8 @@ async function connectDB() {
 connectDB();
 //body parser middleware
 app.use(exp.json());
+//add cookie-parser
+app.use(cookieParser())
 //calling user api
 app.use("/user-api", userApp);
 app.use("/product-api", productApp);

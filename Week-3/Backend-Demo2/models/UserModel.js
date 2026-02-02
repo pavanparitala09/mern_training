@@ -5,14 +5,14 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: [true, "User name is required"],
-    minLength: [3, "Minimun length should be 3"],
-    maxLength: [15, "Max length exceeded"],
+    // minLength: [3, "Minimun length should be 3"],
+    // maxLength: [15, "Max length exceeded"],
   },
   password: {
     type: String,
     required: [true, "password is required"],
-    minLength: [6, "Minimun length should be 3"],
-    maxLength: [15, "Max length exceeded"],
+    // minLength: [4, "Minimun length should be 3"],
+    // maxLength: [100, "Max length exceeded"],
   },
   age: {
     type: Number,
