@@ -3,9 +3,9 @@ POSt http://localhost:3000/product-api/products/
 Content-Type: application/json
 
 {
-    "productName":"Laptop",
-    "price":45000,
-    "brand":"Asus VivoBook"
+   "productname":"tv",
+   "price":45000,
+   "brand":"xyz"
 }
 
 -------------------------------------------------------------------
@@ -16,9 +16,10 @@ Content-Type: application/json
 
 
 {
-    "name":"pavan2",
-    "email":"pavan2@gmail.com",
-    "password":"pavan@123"
+    "name":"pavan",
+    "email":"pavan3@gmail.com",
+    "password":"pavan@123",
+    "cart" : []
 }
 
 ###Read all users
@@ -36,4 +37,7 @@ Content-Type: application/json
 
 
 ###cart
-POSt http://localhost:3000/user-api/cart/
+PUT http://localhost:3000/user-api/user-cart/userid/698198ea72e53bc883468871/productid/6981951a3dbc7535f25049b2
+
+###
+GET http://localhost:3000/user-api/users/6981922d7b3db2e801deb882
