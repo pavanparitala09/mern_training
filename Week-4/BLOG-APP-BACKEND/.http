@@ -1,0 +1,35 @@
+### User register
+POST http://localhost:3000/user-api/register
+Content-Type: application/json
+
+{
+    "firstName":"allu",
+    "lastName":"raarjun",
+    "email":"allu@123",
+    "password":"allu",
+    "role":"AUTHOR"
+}
+
+### Login
+POST http://localhost:3000/user-api/login
+Content-Type: application/json
+
+{
+    "email":"allu@123",
+    "password":"allu"
+}
+
+### create article
+POST http://localhost:3000/author-api/articles
+Content-Type: application/json
+
+{
+    "author":"698379fa90588467fd7c44fc",
+    "title":"Teating-Article -2",
+    "category":"software",
+    "content":"this is a sample content 2. here author contet is stored"
+
+}
+
+###
+GET http://localhost:3000/author-api/articles

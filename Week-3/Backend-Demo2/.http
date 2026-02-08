@@ -1,0 +1,74 @@
+###Read all users
+GET http://localhost:3000/user-api/test
+
+###get user by id
+GET http://localhost:3000/user-api/users/697dc4890770f17d7fdfb559
+
+###
+PUT http://localhost:3000/user-api/users/697dc4890770f17d7fdfb559
+Content-Type: application/json
+
+{
+    "username":"pavan",
+    "password":"pavan",
+    "age":22
+}
+
+
+###user authentication
+POST http://localhost:3000/user-api/auth
+Content-Type: application/json
+
+{
+    "username":"shiva",
+    "password":"shiva"
+}
+
+###Create user
+POST http://localhost:3000/user-api/users
+Content-Type: application/json
+
+{
+    "username":"shiva",
+    "password":"shiva",
+    "age":20
+}
+
+
+###
+DELETE http://localhost:3000/user-api/users/697dc4890770f17d7fdfb559
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+### product API testing
+
+###Get all product details
+GET http://localhost:3000/product-api/products/
+
+
+###
+GET http://localhost:3000/product-api/products/697dd19c8e271b708fc85353
+
+###
+POST http://localhost:3000/product-api/products/
+Content-Type: application/json
+
+{
+    "name":"laptop",
+    "price":45000,
+    "model":"HP laptop"
+}
+
+###
+PUT  http://localhost:3000/product-api/products/697dd19c8e271b708fc85353
+Content-Type: application/json
+
+{
+    "name":"laptop",
+    "price":45000,
+    "model":"Hp"
+}
+
+###
+DELETE http://localhost:3000/product-api/products/697dd19c8e271b708fc85353
