@@ -41,17 +41,17 @@ export async function loginUser(loginDetails) {
 
   //create jwt token
   let signedToken = Jwt.sign(
-    { name: dbUser.name, role: dbUser.role },
+    { userId: dbUser._id, role: dbUser.role },
     process.env.JWT_SECRET,
     {
       expiresIn: "1hr",
     },
   );
- 
+
   //return success status
   return {
     success: true,
     user: dbUser,
-    token:signedToken
+    token: signedToken,
   };
 }

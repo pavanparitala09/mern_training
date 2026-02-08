@@ -3,11 +3,11 @@ POST http://localhost:3000/user-api/register
 Content-Type: application/json
 
 {
-    "firstName":"allu",
-    "lastName":"raarjun",
-    "email":"allu@123",
-    "password":"allu",
-    "role":"AUTHOR"
+    "firstName":"pavan",
+    "lastName":"paritala",
+    "email":"paritala@123",
+    "password":"paritala",
+    "role":"ADMIN"
 }
 
 ### Login
@@ -15,21 +15,47 @@ POST http://localhost:3000/user-api/login
 Content-Type: application/json
 
 {
-    "email":"allu@123",
-    "password":"allu"
+    "email":"pavan@123",
+    "password":"pavan"
 }
+
+###Add COMMENT for an article
+POST http://localhost:3000/user-api/articles/69881a3574c1c4b0a441a8ac/comments
+Content-Type: application/json
+
+{
+    "comment":"Ilike this article"
+}
+
+###Delete comment for an article
+POST http://localhost:3000/user-api/articles/69837a1d90588467fd7c44fe/comments/698379fa90588467fd7c44fc
+
 
 ### create article
 POST http://localhost:3000/author-api/articles
 Content-Type: application/json
 
 {
-    "author":"698379fa90588467fd7c44fc",
-    "title":"Teating-Article -2",
+    "author":"69838571d5b7558b009adb2a",
+    "title":"allu's article",
     "category":"software",
     "content":"this is a sample content 2. here author contet is stored"
 
 }
 
-###
+### GET authors articles
 GET http://localhost:3000/author-api/articles
+
+### Edit authors articles
+PUT http://localhost:3000/author-api/articles/69881a3574c1c4b0a441a8ac
+Content-Type: application/json
+
+{
+    "title":"allu's article edited",
+    "category":"software",
+    "content":"Edited content this is a sample content 2. here author contet is stored"
+
+}
+
+###Get all articles details for admin
+GET http://localhost:3000/admin-api/articles

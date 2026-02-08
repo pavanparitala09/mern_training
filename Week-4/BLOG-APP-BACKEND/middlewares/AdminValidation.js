@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
-export function authorValidationMiddleware(req, res, next) {
+export function adminValidationMiddleware(req, res, next) {
   //get token from cookies
   let token = req.cookies.token;
 
@@ -10,9 +10,9 @@ export function authorValidationMiddleware(req, res, next) {
   //return payload
   req.author = decodedToken;
 
-  //check if the user is author or not
-  if (decodedToken.role != "AUTHOR")
-    return res.status(500).json({ message: "User can not publish article" });
+  //check if the user is admin or not
+  if (decodedToken.role != "ADMIN")
+    return res.status(500).json({ message: "you are not allowed to this page" });
 
   //go to next step
   next();
