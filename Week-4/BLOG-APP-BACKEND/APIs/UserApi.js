@@ -1,25 +1,30 @@
 import exp from "express";
-import { registerUser } from "./AuthenticateApi.js";
-import { loginUser } from "./AuthenticateApi.js";
+import { registerUser } from "../services/AuthService.js";
+import { loginUser } from "../services/AuthService.js";
 import Jwt from "jsonwebtoken";
 import { userValidationMiddleware } from "../middlewares/UserValidation.js";
 import { articleModel } from "../models/ArticleModel.js";
 export const userRoute = exp.Router();
 
 userRoute.post("/register", async (req, res) => {
-  //call register function
-  let newUser = await registerUser(req.body);
+  //get user doc from request
+  let userObj = req.body
+
+  //call register function and set role to user
+  let newUser = await registerUser({...userObj,role:"USER"});
+
   //send response
-  res.status(201).json({ message: "new user created", payload: newUser });
+  res.status(201).json({ message: "User created", payload: newUser });
 });
 
 //login
 userRoute.post("/login", async (req, res) => {
+  
   //call login function
   let results = await loginUser(req.body);
 
   if (!results.success) {
-    return res.status(404).json({ message: results.message });
+    return res.status(401).json({ message: results.message });
   }
 
   //save toke in http only cookie
@@ -30,8 +35,17 @@ userRoute.post("/login", async (req, res) => {
   });
 
   //send res
-  res.status(200).json({ message: "login sucess" });
+  res.status(200).json({ message: "User login success" });
 });
+
+//read all articles
+userRoute.get('/articles', userValidationMiddleware, async(req,res) => {
+  //read all the article from db
+  let articles = await articleModel.find({isArticleActive:true})
+
+  res.status(200).json({message:"article are",payload:articles})
+
+})
 
 // POST /articles/:id/comments
 userRoute.post(

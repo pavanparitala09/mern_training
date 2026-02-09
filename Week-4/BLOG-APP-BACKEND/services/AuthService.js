@@ -1,34 +1,52 @@
 import { userModel } from "../models/UserModel.js";
-import { compare, hash } from "bcrypt";
+import { compare,hash} from "bcrypt";
 import Jwt from "jsonwebtoken";
 
 export async function registerUser(userData) {
   // create model instance
-  const newUser = new userModel(userData);
+  const userDoc = new userModel(userData);
 
   // validate input
-  await newUser.validate();
+  await userDoc.validate();
 
   // hash password
-  newUser.password = await hash(newUser.password, 10);
+  userDoc.password = await hash(userDoc.password, 10);
 
   // save to DB
-  await newUser.save({ validateBeforeSave: false });
+  await userDoc.save({ validateBeforeSave: false });
 
-  return newUser;
+  //convert document to object
+  const newUserObj = userDoc.toObject()
+
+  //delete password from object
+   delete(newUserObj.password)
+
+  return newUserObj;
 }
 
+//function for login
 export async function loginUser(loginDetails) {
   const { email, password } = loginDetails;
 
   // find user
   const dbUser = await userModel.findOne({ email: email });
+  
+  //check user exist or not in db
   if (!dbUser) {
     return {
       success: false,
       message: "Invalid email",
     };
   }
+
+  //check is user active or not
+  if(!dbUser.isActive){
+   return {
+      success: false,
+      message: "user blocked",
+    };
+  }
+
 
   // compare password
   const isMatch = await compare(password, dbUser.password);
@@ -39,6 +57,7 @@ export async function loginUser(loginDetails) {
     };
   }
 
+  
   //create jwt token
   let signedToken = Jwt.sign(
     { userId: dbUser._id, role: dbUser.role },

@@ -16,4 +16,8 @@ adminRoute.get("/articles", adminValidationMiddleware, async (req, res) => {
   //send response
   res.status(200).json({ message: "article are :", payload: articles });
 });
+
 //block or unblock user roles
+adminRoute.post('/block-unblock',adminValidationMiddleware, async(req,res) => {
+  //get 
+})

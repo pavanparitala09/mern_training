@@ -5,9 +5,8 @@ Content-Type: application/json
 {
     "firstName":"pavan",
     "lastName":"paritala",
-    "email":"paritala@123",
-    "password":"paritala",
-    "role":"ADMIN"
+    "email":"user@123",
+    "password":"paritala"
 }
 
 ### Login
@@ -51,11 +50,23 @@ PUT http://localhost:3000/author-api/articles/69881a3574c1c4b0a441a8ac
 Content-Type: application/json
 
 {
-    "title":"allu's article edited",
-    "category":"software",
+    "title":"allu's article  edited 2nd time",
+    "category":"programming",
     "content":"Edited content this is a sample content 2. here author contet is stored"
 
 }
 
 ###Get all articles details for admin
 GET http://localhost:3000/admin-api/articles
+
+###Soft delete the article
+post http://localhost:3000/author-api/delete/69881a3574c1c4b0a441a8ac
+
+
+
+###Logout
+POST http://localhost:3000/logout
+
+
+### User read all articles
+GET http://localhost:3000/user-api/articles

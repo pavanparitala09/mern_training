@@ -29,14 +29,30 @@ const connectdb = async() =>{
 }
 //call the function
 connectdb()
+
 //body parser middleware
 app.use(exp.json())
+
 //add cookie parser
 app.use(cookieParser());
 
+//api routes
 app.use('/user-api',userRoute)
 app.use('/author-api',authorRoute)
 app.use('/admin-api',adminRoute)
+
+//logout for all type of users
+app.post('/logout',(req,res) => {
+    //clear token from cookie storage
+    res.clearCookie('token',{
+        httpOnly:true,  //must match original settings
+        secure:false,   //must match original settings
+        sameSite:"lax"  //must match original settings
+    })
+
+    res.status(200).json({message:"log out successfull"})
+})
+
 //error handeling middleware
  function errorHandler(err, req, res, next) {
    res.json({ message: "error", reason: err.message });
