@@ -12,7 +12,7 @@ export function adminValidationMiddleware(req, res, next) {
 
   //check if the user is admin or not
   if (decodedToken.role != "ADMIN")
-    return res.status(500).json({ message: "you are not allowed to this page" });
+    return res.status(500).json({ message: "only admin can access to this page" });
 
   //go to next step
   next();

@@ -8,46 +8,24 @@ export const userRoute = exp.Router();
 
 userRoute.post("/register", async (req, res) => {
   //get user doc from request
-  let userObj = req.body
+  let userObj = req.body;
 
   //call register function and set role to user
-  let newUser = await registerUser({...userObj,role:"USER"});
+  let newUser = await registerUser({ ...userObj, role: "USER" });
 
   //send response
   res.status(201).json({ message: "User created", payload: newUser });
 });
 
-//login
-userRoute.post("/login", async (req, res) => {
-  
-  //call login function
-  let results = await loginUser(req.body);
+//read all articles
+userRoute.get("/articles", userValidationMiddleware, async (req, res) => {
+  //read all the article from db
+  let articles = await articleModel.find({ isArticleActive: true });
 
-  if (!results.success) {
-    return res.status(401).json({ message: results.message });
-  }
-
-  //save toke in http only cookie
-  res.cookie("token", results.token, {
-    httpOnly: true,
-    secure: false,
-    sameSite: "lax",
-  });
-
-  //send res
-  res.status(200).json({ message: "User login success" });
+  res.status(200).json({ message: "article are", payload: articles });
 });
 
-//read all articles
-userRoute.get('/articles', userValidationMiddleware, async(req,res) => {
-  //read all the article from db
-  let articles = await articleModel.find({isArticleActive:true})
-
-  res.status(200).json({message:"article are",payload:articles})
-
-})
-
-// POST /articles/:id/comments
+// Add comment for article
 userRoute.post(
   "/articles/:id/comments",
   userValidationMiddleware,
@@ -86,14 +64,17 @@ userRoute.post(
 
 //delete a comment
 //(error is if comment id not present also it is giving positive message)
-userRoute.post("/articles/:a_id/comments/:c_id",userValidationMiddleware,async (req, res) => {
+userRoute.post(
+  "/articles/:a_id/comments/:c_id",
+  userValidationMiddleware,
+  async (req, res) => {
     //get article id from params
     let articleId = req.params.a_id;
 
     //get comment id from params
     let commentId = req.params.c_id;
 
-    //delete the comment from db 
+    //delete the comment from db
     let deletedComment = await articleModel.findByIdAndUpdate(
       articleId,
       {

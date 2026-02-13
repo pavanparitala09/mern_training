@@ -5,9 +5,10 @@ import cookieParser from 'cookie-parser';
 import { userRoute } from './APIs/UserApi.js';
 import { adminRoute } from './APIs/AdminApi.js';
 import { authorRoute } from './APIs/AuthorApi.js';
+import { commonRoute } from './APIs/CommonApi.js';
 
 
-config()//process.env
+config()// to process .env
 const app = exp()
 
 
@@ -40,18 +41,16 @@ app.use(cookieParser());
 app.use('/user-api',userRoute)
 app.use('/author-api',authorRoute)
 app.use('/admin-api',adminRoute)
+app.use('/common-api',commonRoute)
 
-//logout for all type of users
-app.post('/logout',(req,res) => {
-    //clear token from cookie storage
-    res.clearCookie('token',{
-        httpOnly:true,  //must match original settings
-        secure:false,   //must match original settings
-        sameSite:"lax"  //must match original settings
-    })
+//for unknown path
+app.use((req, res, next) => {
+  res.status(404).send({message:`${req.url} is invalid path`});
+});
 
-    res.status(200).json({message:"log out successfull"})
-})
+
+
+
 
 //error handeling middleware
  function errorHandler(err, req, res, next) {

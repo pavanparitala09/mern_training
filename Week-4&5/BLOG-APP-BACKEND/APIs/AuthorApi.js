@@ -19,25 +19,7 @@ authorRoute.post("/register", async (req, res) => {
   res.status(200).json({ message: "Author created:", payload: newAuthorObj });
 });
 
-//authenticate
-authorRoute.post("/login", async (req, res) => {
-  //call login function
-  let results = await loginUser(req.body);
 
-  if (!results.success) {
-    return res.status(404).json({ message: results.message });
-  }
-
-  //save toke in http only cookie
-  res.cookie("token", results.token, {
-    httpOnly: true,
-    secure: false,
-    sameSite: "lax",
-  });
-
-  //send res
-  res.status(200).json({ message: "Author login success" });
-});
 
 //create article
 authorRoute.post("/articles", authorValidationMiddleware, async (req, res) => {

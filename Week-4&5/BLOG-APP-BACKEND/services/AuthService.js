@@ -2,6 +2,7 @@ import { userModel } from "../models/UserModel.js";
 import { compare,hash} from "bcrypt";
 import Jwt from "jsonwebtoken";
 
+//function to register users
 export async function registerUser(userData) {
   // create model instance
   const userDoc = new userModel(userData);

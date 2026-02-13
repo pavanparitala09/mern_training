@@ -19,7 +19,7 @@ adminRoute.get("/articles", adminValidationMiddleware, async (req, res) => {
 });
 
 //block the user
-adminRoute.post("/block-unblock", adminValidationMiddleware, async (req, res) => {
+adminRoute.post("/blockuser/:id", adminValidationMiddleware, async (req, res) => {
     //get user id from params
     let userId = req.params.userId;
 
@@ -45,7 +45,7 @@ adminRoute.post("/block-unblock", adminValidationMiddleware, async (req, res) =>
 );
 
 //unblock the user
-adminRoute.post("/block-unblock", adminValidationMiddleware, async (req, res) => {
+adminRoute.post("/unblock/:id", adminValidationMiddleware, async (req, res) => {
     //get user id from params
     let userId = req.params.userId;
 

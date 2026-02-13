@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 
 ### Login
-POST http://localhost:3000/user-api/login
+POST http://localhost:3000/common-api/login
 Content-Type: application/json
 
 {
@@ -65,7 +65,7 @@ post http://localhost:3000/author-api/delete/69881a3574c1c4b0a441a8ac
 
 
 ###Logout
-POST http://localhost:3000/logout
+POST http://localhost:3000/common-api/logout
 
 
 ### User read all articles

@@ -12,7 +12,7 @@ export function authorValidationMiddleware(req, res, next) {
 
   //check if the user is author or not
   if (decodedToken.role != "AUTHOR")
-    return res.status(500).json({ message: "User can not publish article" });
+    return res.status(500).json({ message: "only author can access to this page" });
 
   //go to next step
   next();
