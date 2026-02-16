@@ -64,7 +64,7 @@ userRoute.post(
 
 //delete a comment
 //(error is if comment id not present also it is giving positive message)
-userRoute.post(
+userRoute.delete(
   "/articles/:a_id/comments/:c_id",
   userValidationMiddleware,
   async (req, res) => {
@@ -73,6 +73,22 @@ userRoute.post(
 
     //get comment id from params
     let commentId = req.params.c_id;
+    //console.log(articleId,commentId)
+
+    //find article
+    let article = await articleModel.findById(articleId);
+
+    if (!article) return res.status(404).json({ message: "Article does not exist" });
+
+    //check is article is active or not
+    if(!article.isArticleActive)
+      return res.status(500).json({message:"server error try again"})
+
+    //if article exist then find comment
+    let comment = article.comment.some((c) => c._id.equals(commentId));
+
+    //if comment does not exist
+    if (!comment) return res.status(404).json({ message: "comment does not exist" });
 
     //delete the comment from db
     let deletedComment = await articleModel.findByIdAndUpdate(

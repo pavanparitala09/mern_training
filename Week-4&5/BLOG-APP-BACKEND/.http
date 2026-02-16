@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ###Delete comment for an article
-POST http://localhost:3000/user-api/articles/69837a1d90588467fd7c44fe/comments/698379fa90588467fd7c44fc
+DELETE  http://localhost:3000/user-api/articles/698385b3d5b7558b009adb2d/comments/69888dc8f73b09a01e06621c
 
 
 ### create article
