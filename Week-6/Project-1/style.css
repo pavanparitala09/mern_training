@@ -1,0 +1,26 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+
+
+}
+div{
+    align-items: center;
+    text-align: center;
+    margin: 20px solid;
+    
+}
+img{
+    border-radius: 50%;
+    margin-bottom: 0px;
+    display: inline-block;
+    padding-bottom: 0px;
+}
+h2{
+    background-color: palevioletred;
+    display: inline;
+    padding: 10px;
+    border-radius: 20%;
+    text-align: center;
+}

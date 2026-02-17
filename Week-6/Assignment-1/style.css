@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+header{
+    background-color: rgb(237, 229, 229);
+    padding: 100px;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 80px;
+    flex-wrap: wrap;
+}
+.card{
+    padding: 20px;
+    margin-right: 70px;
+    margin-left: 70px;
+}
+.learn{
+    background-color:skyblue;
+    border: 5px solid skyblue;
+    margin-top: 10px;
+    border-radius: 10%;
+}
+button{
+    margin-top: 10px;
+    background-color: gray;
+    border: 10px solid gray;
+    border-radius: 15%;
+}
+
+header h1{
+    margin-bottom: 5px;
+    font-size: 3rem;
+}
+footer{
+    display: flex;
+    padding-left: 150px;
+}

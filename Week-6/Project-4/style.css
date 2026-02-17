@@ -1,0 +1,38 @@
+*{
+    margin: 0px;
+    border: 0px;
+
+}
+.parent{
+    max-width: 700px;
+    height: 700px;
+    margin: auto;
+    border: 5px solid gray;
+    margin-top: 100px;
+    /* flex container */
+    display: flex;
+    /* direction */
+    /* flex-direction: row; */
+    /* horizental */
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.child{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: aliceblue;
+}
+.child1{
+    background-color: red;
+    /* flex-grow: 1; */
+}
+.child2{
+    background-color:greenyellow;
+    /* flex-grow: 2; */
+}
+.child3{
+    background-color: blue;
+
+}

@@ -1,0 +1,14 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+header{
+    background-color:#fff;
+    padding-left: 100px;
+
+}
+
+.top{
+    background-color: gray;
+}
